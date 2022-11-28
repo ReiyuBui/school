@@ -31,6 +31,7 @@ songz = [
   ['NGEOP.wav','Neon Genesis Evangelion','Cowboy Bebop','Darling in the FRANXX','Tokyo Ghoul:Re',green,red,red,red,7],
   ['OnePieceOP.wav','One Piece','Bleach','Dragon Ball','Dragon Ball Z',green,red,red,red,7],
   ['TokyoGhoulOP.wav','Tokyo Ghoul', 'Tokyo Ghoul:RE','Re:ZERO','Konosuba',green,red,red,red,7],
+  ['ChainsawManOP.wav','Chainsaw man','My Hero Academia', 'Cowboy Bebop','Death Note',green,red,red,red,7]
 ]
 points = StringVar(value=0) #Points is a changable variable
 songorder = random.sample(range(len(songz)),len(songz)) 
@@ -47,7 +48,7 @@ def finish():
     A4.destroy()
     losetext = tk.Label(window, text = losemessage, font = ('New Times',25),bg="#000052",fg="White") #adds label with message
     losetext.pack(pady=20)
-    finalscoreloss = tk.Label(window,text = "Score" + str(points.get()) + "/10", font = ('New Times', 25),bg="#000052",fg="White")
+    finalscoreloss = tk.Label(window,text = "Score" + str(points.get()) + "/11", font = ('New Times', 25),bg="#000052",fg="White")
     finalscoreloss.pack(pady=20)  #calculates score out of 10
 
 def progress(song, audiolength):  #progressbar movement
@@ -59,7 +60,7 @@ def progress(song, audiolength):  #progressbar movement
     for i in range(audiolength):
         ProgressBar['value'] += timeplayed
         window.update_idletasks() #follows the song length and fills progress bar
-        time.sleep(1)
+        time.sleep(1.33333333)
     ProgressBar['value'] = 0
 
 def answers(buttonpressed):
