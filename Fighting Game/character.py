@@ -1,7 +1,7 @@
 import pygame
 
 class Samurai():
-    def __init__(self,player,x,y,flip,playerdata,sprite_sheet,animationsteps):
+    def __init__(self,player,x,y,flip,playerdata,sprite_sheet,animationsteps,sound):
         self.player = player
         self.scale1 = playerdata[1]
         self.size = playerdata[0]
@@ -22,6 +22,7 @@ class Samurai():
         self.atkcd = 0
         self.hit = False
         self.alive = True
+        self.atksound = sound
     
     def load_images(self,sprite_sheet,animationsteps):
         #get images 
@@ -171,6 +172,7 @@ class Samurai():
     def attack(self, enemy):
         if self.atkcd == 0:
             self.attacking = True
+            self.atksound.play()
             hitbox = pygame.Rect(self.rect.centerx - (2*self.rect.width*self.flip),self.rect.y, 1.5 * self.rect.width,self.rect.height)
             if hitbox.colliderect(enemy.rect):
                 enemy.health -= 5

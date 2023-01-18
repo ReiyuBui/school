@@ -1,5 +1,8 @@
 import pygame
+from pygame import mixer
+mixer.init()
 pygame.init()
+pygame.mixer.init()
 from character import Samurai
 
 
@@ -27,6 +30,15 @@ pygame.display.set_caption("Samurai")
 #set fps
 time = pygame.time.Clock()
 FPS = 60
+
+#load music and sounds
+pygame.mixer.music.load("Assets/images/New folder/yas.wav")
+pygame.mixer.music.set_volume(0.07)
+pygame.mixer.music.play(-1,0.0,5000)
+
+swordsound = pygame.mixer.Sound("Assets/images/New folder/sowrd affect.wav")
+swordsound.set_volume(0.1)
+
 #get background image
 bgimage = pygame.image.load("Assets/images/Background/frame_1_delay-0.15s.jpg").convert_alpha()
 #win image
@@ -61,8 +73,8 @@ def draw_health_bar(health,x,y):
 
 
 #create two object/characters
-samurai1= Samurai(1,200,370,False, Asamuraidata,Asamuraisheet,Asamuraisteps)
-samurai2= Samurai(2,700,370,True, samurai2data,samurai2sheet,samurai2steps)
+samurai1= Samurai(1,200,370,False, Asamuraidata,Asamuraisheet,Asamuraisteps, swordsound)
+samurai2= Samurai(2,700,370,True, samurai2data,samurai2sheet,samurai2steps, swordsound)
 samurai1.load_images(Asamuraisheet,Asamuraisteps)
 
 
@@ -117,8 +129,8 @@ while LOOP:
         if pygame.time.get_ticks()-round_over_time > ROUND_OVERCD:
             roundover = False
             intro_count=3
-            samurai1= Samurai(1,200,370,False, Asamuraidata,Asamuraisheet,Asamuraisteps)
-            samurai2= Samurai(2,700,370,True, samurai2data,samurai2sheet,samurai2steps)
+            samurai1= Samurai(1,200,370,False, Asamuraidata,Asamuraisheet,Asamuraisteps, swordsound)
+            samurai2= Samurai(2,700,370,True, samurai2data,samurai2sheet,samurai2steps, swordsound)
 
 
     #event handler that will end the game
